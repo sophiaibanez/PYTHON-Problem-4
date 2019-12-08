@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 y0 = float(input('Enter initial height:  '))                    
 v0 = float(input('Enter velocity:  '))  
 angle = float(input('Enter angle (with respect to x-axis): '))
-ax = float(input('Enter initial acceleration in x:  '))
-ay = float(input('Enter initial acceleration in y:  '))
+ax = float(input('Enter acceleration in x:  '))
+ay = float(input('Enter acceleration in y:  '))
 
 if ay == 0:
     print('Error. There is no vertical acceleration.')
