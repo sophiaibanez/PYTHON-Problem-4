@@ -13,27 +13,27 @@ if ay == 0:
     
 else:
     x0 = 0;
-    vx_initial = v0 * math.degrees(math.cos(angle))
-    vy_initial = v0 * math.degrees(math.sin(angle))
+    vx_initial = v0*(math.cos(angle * (math.pi/180)))
+    vy_initial = v0*(math.sin(angle * (math.pi/180)))
     tf = np.roots([(1/2)*ay, vy_initial, y0])
     tf = max(tf)
-    t = np.array([np.linspace(0,tf)])
-    x = x0 + vx_initial*t + (1/2)*ax*t**2
-    y = y0 + vy_initial*t + (1/2)*ay*t**2
+    t = np.arange(0,tf,0.1)
+    x = (x0 + vx_initial*t + (1/2)*ax*t**2).transpose()
+    y = (y0 + vy_initial*t + (1/2)*ay*t**2).transpose()
     
     ax_ideal = 0
     ay_ideal = -9.8
-    x_ideal = x0 + vx_initial*t
-    y_ideal = y0 + vy_initial*t + (1/2)*ay_ideal*t**2
+    x_ideal = (x0 + vx_initial*t).transpose()
+    y_ideal = (y0 + vy_initial*t + (1/2)*ay_ideal*t**2).transpose()
     
-    plt.plot(x,y)
-    plt.plot(x_ideal, y_ideal,'g')
+    plt.plot(x,y, label = 'Non-ideal')
+    plt.plot(x_ideal, y_ideal,'g', label = 'Ideal')
+    plt.legend()
     plt.title ('Projectile Trajectory')
     plt.xlabel('Horizontal distance (in meters)')
     plt.ylabel('Height (in meters)')
-    plt.legend('Non-ideal Trajectory','Ideal Trajectory')
     plt.axis('tight')
     plt.grid()
+    plt.tight_layout()
     plt.show()
-    
     
